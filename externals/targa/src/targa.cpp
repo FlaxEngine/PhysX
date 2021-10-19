@@ -54,7 +54,7 @@ static const char tga_id[] =
 static const size_t tga_id_length = 26; /* tga_id + \0 */
 
 //Some platfroms do not define fopen_s
-#if !defined( __STDC_WANT_SECURE_LIB__ ) && !defined(__ORBIS__)
+#if !defined( __STDC_WANT_SECURE_LIB__ ) && !defined(__ORBIS__) && !defined(__PROSPERO__)
 static int fopen_s(FILE ** stream, const char * filename, const char * mode)
 {
 	FILE* fp = fopen( filename, mode );
