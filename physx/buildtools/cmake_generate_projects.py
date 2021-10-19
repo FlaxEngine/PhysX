@@ -20,7 +20,7 @@ def cmakeExt():
 
 
 def filterPreset(presetName):
-    winPresetFilter = ['win','uwp','ps4','switch','xboxone','android','crosscompile','xboxseriesx']
+    winPresetFilter = ['win','uwp','ps4','ps5','switch','xboxone','android','crosscompile','xboxseriesx']
     if sys.platform == 'win32':        
         if any(presetName.find(elem) != -1 for elem in winPresetFilter):
             return True
@@ -209,6 +209,13 @@ class CMakePreset:
             outString = outString + ' -DCMAKE_TOOLCHAIN_FILE=' + \
                 os.environ['PM_CMakeModules_PATH'] + '/ps4/PS4Toolchain.txt'
             outString = outString + ' -DCMAKE_GENERATOR_PLATFORM=ORBIS'
+            outString = outString + ' -DSUPPRESS_SUFFIX=ON'
+            return outString
+        elif self.targetPlatform == 'ps5':
+            outString = outString + ' -DTARGET_BUILD_PLATFORM=ps5'
+            outString = outString + ' -DCMAKE_TOOLCHAIN_FILE=' + \
+                os.environ['PM_CMakeModules_PATH'] + '/ps5/PS5Toolchain.txt'
+            outString = outString + ' -DCMAKE_GENERATOR_PLATFORM=PROSPERO'
             outString = outString + ' -DSUPPRESS_SUFFIX=ON'
             return outString
         elif self.targetPlatform == 'xboxone':

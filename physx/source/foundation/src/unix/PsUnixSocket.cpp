@@ -38,6 +38,8 @@
 #if !PX_PS4
 #include <netdb.h>
 #include <arpa/inet.h>
+#elif PX_PS5
+#include <ps5/PsPS5Socket.h>
 #else
 #include <ps4/PsPS4Socket.h>
 #endif
